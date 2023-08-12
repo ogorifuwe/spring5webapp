@@ -3,14 +3,10 @@ package guru.springframework.spring5webapp;
 public class Franc extends Money {
 
   public Franc(int amount) {
-    super(amount);
+    this.amount= amount;
   }
 
-  Franc times(int multiplier) {
+  public Money times(int multiplier) {
     return new Franc(amount * multiplier);
   }
-
-
-
-
 }
