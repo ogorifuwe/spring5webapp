@@ -3,5 +3,7 @@ package guru.springframework.spring5webapp;
 public interface Expression {
   Money reduce(Bank bank, String to);
 
-  Expression plus(Money addend);
+  Expression plus(Expression addend);
+
+  Expression times(int multiplier);
 }

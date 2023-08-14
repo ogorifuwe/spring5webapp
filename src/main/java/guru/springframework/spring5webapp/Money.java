@@ -1,19 +1,19 @@
 package guru.springframework.spring5webapp;
 
 public class Money implements Expression {
-  protected int amount;
-  protected String currency;
+  final int amount;
+  private final String currency;
 
   public Money(int amount, String currency) {
     this.amount = amount;
     this.currency = currency;
   }
 
-  public static Money dollar(int amount) {
+  static Money dollar(int amount) {
     return new Money(amount, "USD");
   }
 
-  public static Money franc(int amount) {
+  static Money franc(int amount) {
     return new Money(amount, "CHF");
   }
 
@@ -21,11 +21,13 @@ public class Money implements Expression {
     return this.currency;
   }
 
+  @Override
   public Expression times(int multiplier) {
     return new Money(amount * multiplier, this.currency);
   }
 
-  public Expression plus(Money addend) {
+  @Override
+  public Expression plus(Expression addend) {
     return new Sum(this, addend);
   }
 
